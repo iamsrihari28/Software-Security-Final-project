@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+   <title>Secure Hospital System</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<!-- chatbot -->
+	<link rel="stylesheet" type="text/css" href="/chatbot.css">
+	<script type="text/javascript" src="/chatbot.js"></script>
+	
+</head>
+
+<body>
+
+	<div id="chatbot-body"> 
+  
+		<div id="chat-circle" class="btn btn-raised">
+			<div id="chat-overlay"></div>
+				<i class="fa fa-comments" aria-hidden="true"></i>
+			</div>
+		  
+			<div class="chat-box">
+				<div class="chat-box-header">ChatBot
+					<span class="chat-box-toggle">
+						<i class="fa fa-window-close fa-lg"></i>
+					</span>
+				</div>
+				<div class="chat-box-body">
+					<div class="chat-box-overlay"></div>
+						<div class="chat-logs">
+				
+						</div><!--chat-log -->
+					</div>
+				<div class="chat-input">      
+				<form>
+					<input type="text" id="chat-input" placeholder="Send your query..."/>
+				<button type="submit" class="chat-submit" id="chat-submit">
+					<i class="fa fa-paper-plane fa-lg" aria-hidden="true"></i>
+				</button>
+				</form>      
+				</div>
+		</div>
+	</div>
+		
+
+<div class="container">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a th:href="@{/patient/home}" class="navbar-brand" href="#">Secure Hospital System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+          
+          <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
+	        <ul style="list-style: none; display:contents">
+		        <li class="nav-item active" style="padding-right: 20px;">
+	        		<div style="display: flex; align-items:center">
+				      	<div style="height: 10px; width: 10px; border-radius:50%; background-color: var(--success)"></div>
+				      	<em style="color:white; font-size: 15px; margin-left: 10px">logged in as <span th:text="${accountName}"></span></em>
+				    </div>
+			     </li>
+				<li>
+					<form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="POST">
+						<button class="btn btn-outline-light" type="submit" title="Logout">Log Out</button>
+					</form>
+				</li>
+	        </ul>
+    	</div>
+    </nav>
+    <br>
+    <br>
+    <br>
+     <div class="jumbotron" style="background-color: #deecf9">
+     <!--    <h3 style="text-align:center;">Welcome to the Admin Dashboard</h3>
+       <hr style="height:5px;border:none;color:#333;background-color:#333;" /> -->
+       <h1 th:inline="text">Hello</h1>
+        <hr>
+        <h3>Welcome to the Patient Dashboard</h3>
+        <br>
+    </div>
+    <br>
+  	<div id="loader" class="lds-dual-ring hidden overlay">
+  	
+    </div>
+    
+<div class="card-deck">
+	<div class="card text-center">
+	  <div class="card-body">
+	    <h5 class="card-title">Book Appointment</h5>
+	    <hr>
+	   <i class="fa fa-calendar" aria-hidden="true" style="font-size:8rem;"></i>
+	   <br><br><br>
+	    <a th:href="@{/patient/bookappointment}" class="btn btn-dark">Book Appointment</a>
+	  </div>
+	</div>
+	<div class="card text-center">
+	  <div class="card-body">
+	    <h5 class="card-title">View diagnosis Report</h5>
+	    <hr>
+	    <i class="fa fa-file-o" aria-hidden="true" style="font-size:8rem;"></i>
+	    <br><br>
+	    <a th:href="@{/patient/viewAllDiagnosisReports}" class="btn btn-dark">View diagnosis Report</a>
+	  </div>
+	</div>
+	<div class="card text-center">
+	  <div class="card-body">
+	    <h5 class="card-title">Payments</h5>
+	    <hr>
+	    <i class="fa fa-credit-card"  aria-hidden="true" style="font-size:8rem;"></i>
+	    <a th:href="@{/patient/viewPendingPayments}" class="btn btn-dark">Payments</a>
+	  </div>
+	</div>
+	<div class="card text-center">
+	  <div class="card-body">
+	    <h5 class="card-title">View Lab reports</h5>
+	    <hr>
+	    <i class="fa fa-file-o" aria-hidden="true" style="font-size:8rem;"></i>
+	    <br><br>
+	    <a th:href="@{/patient/viewLabTests}" class="btn btn-dark">Lab Reports</a>
+	  </div>
+	</div>
+	<div class="card text-center">
+	  <div class="card-body">
+	    <h5 class="card-title">View/Edit Insurance Details</h5>
+	    <hr>
+	    <i class="fa fa-edit" aria-hidden="true" style="font-size:8rem;"></i>
+	    <br><br>
+	    <a th:href="@{/patient/getInsuranceDetails}" class="btn btn-dark">View/Edit Insurance Details</a>
+	  </div>
+	</div>
+</div>
+<br><br>
+
+<div class="card-deck">
+	
+	<div class="card text-center">
+	  <div class="card-body">
+	    <h5 class="card-title">View Insurance Claims</h5>
+	    <hr>
+	    <i class="fa fa-file-text-o" aria-hidden="true" style="font-size:8rem;"></i>
+	    <br><br>
+	    <a th:href="@{/patient/viewClaimHistory}" class="btn btn-dark">View Insurance Claims</a>
+	  </div>
+	</div>
+	<div class="card text-center">
+	  <div class="card-body">
+	    <h5 class="card-title">View Appointments</h5>
+	    <hr>
+	    <i class="fa fa-file-text-o" aria-hidden="true" style="font-size:8rem;"></i>
+	    <br><br>
+	    <a th:href="@{/patient/viewAppointmentHistory}" class="btn btn-dark">View Appointments</a>
+	  </div>
+	</div>
+	<div class="card text-center">
+	  <div class="card-body">
+	    <h5 class="card-title">View Payments</h5>
+	    <hr>
+	    <i class="fa fa-file-text-o" aria-hidden="true" style="font-size:8rem;"></i>
+	    <br><br>
+	    <a th:href="@{/patient/viewPaymentHistory}" class="btn btn-dark">View Payments</a>
+	  </div>
+	</div>
+	<div class="card text-center">
+	  <div class="card-body">
+	    <h5 class="card-title">Submit Queries To Help and Support Centre</h5>
+	    <hr>
+	    <i class="fa fa-envelope-o" aria-hidden="true" style="font-size:8rem;"></i>
+	    <br><br>
+	    <a th:href="@{/patient/submitQuery}" class="btn btn-dark">Submit Queries</a>
+	  </div>
+    </div>
+    <div class="card text-center">
+	  <div class="card-body">
+	    <h5 class="card-title">View Queries Submitted To Help and Support Centre</h5>
+	    <hr>
+	    <i class="fa fa-envelope-o" aria-hidden="true" style="font-size:8rem;"></i>
+	    <br><br>
+	    <a th:href="@{/patient/viewQuery}" class="btn btn-dark">View Queries</a>
+	  </div>
+    </div>
+    </div>
+<br>
+<br>
+</div>
+</body>
+</html>

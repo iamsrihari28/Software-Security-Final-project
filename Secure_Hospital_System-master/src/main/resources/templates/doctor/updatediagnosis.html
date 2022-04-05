@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+   <title>Secure Hospital System</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+<br>
+<br>
+<br>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a th:href="@{/doctor/home}" class="navbar-brand" href="#">Secure Hospital System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+          
+           <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
+	        <ul style="list-style: none; display:contents">
+	         <li>
+		  		<a th:href="@{/doctor/updateinfo}"><i style ="color:white;font-size:2rem;" class="fa fa-user" title="profile"></i></a>
+		        </li>&nbsp&nbsp
+		        <li class="nav-item active" style="padding-right: 20px;">
+	        		<div style="display: flex; align-items:center">
+				      	<div style="height: 10px; width: 10px; border-radius:50%; background-color: var(--success)"></div>
+				      	<em style="color:white; font-size: 15px; margin-left: 10px">logged in as <span th:text="${accountName}"></span></em>
+				    </div>
+			     </li>
+		        <li>
+    				<form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="POST">
+		  				<button class="btn btn-outline-light" type="submit" title="Logout">Log Out</button>
+		         	</form>
+		        </li>
+	        </ul>
+    	</div>
+    </nav>
+<div class="content-section col-md-8">
+    <h2>Update Diagnosis</h2>
+    <br>
+    <form th:action="@{/doctor/editDiagnosis}" id="diagnosis" method="POST" accept-charset="UTF-8" class="content-section col-md-8">
+        <fieldset class="form-group">
+        <input type="hidden" name="diagnosisId" id="diagnosisId" th:value="${diagnosis.getDiagnosisID()}" />
+        	<div class="form-group">
+                <label for="patientname">Patient Name:</label>
+                <input type="text" readonly="readonly" class="form-control" id="firstname" name="firstname" th:value="${diagnosis.getUser().getFirstName()}">
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="problem">Problem:</label>
+                <input type="text" class="form-control" id="problem" name="problem" th:value="${diagnosis.getProblem()}">
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="symptoms">Symptoms:</label>
+                <input type="text" class="form-control" id="symptoms" name="symptoms" th:value="${diagnosis.getSymptoms()}">
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="Prescription">Prescription:</label>
+                <input type="text" class="form-control" id="prescription" name="prescription" th:value="${diagnosis.getPrescription()}">
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="LabTestsNeeded">Is Lab Test needed?</label><br>
+                <div th:if="${diagnosis.getLabTestNeeded()=='Yes'}">
+                 <input type="radio" id="Yes" name="labtestsneeeded" value="Yes" checked>
+                <label for="Yes">Yes</label><br>
+                <input type="radio" id="No" name="labtestsneeeded" value="No">
+                <label for="No">No</label><br>
+                </div>
+                <div th:unless="${diagnosis.getLabTestNeeded()=='Yes'}">
+                 <input type="radio" id="Yes" name="labtestsneeeded" value="Yes">
+                <label for="Yes">Yes</label><br>
+                <input type="radio" id="No" name="labtestsneeeded" value="No" checked>
+                <label for="No">No</label><br>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="LabTests">If yes, please select the name of the Lab Test</label>
+                <input type="text" class="form-control" id="labtests" name="labtests" th:value="${diagnosis.getLabtests()}">                
+                <span class="text-danger"></span>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </fieldset>
+    </form>
+</div>
+<br>
+<footer class="buttom-footer py-lg-4 py-md-3 py-sm-3 py-3 " style="color: #fff; background-color: #343a40; bottom: 0; width: 100%;">
+    <div class="copy-agile-right text-center">
+        <h2 class="my-3">Secure Hospital System</h2>
+        <p>
+            © Secure Hospital System
+        </p>
+    </div>
+</footer>
+</body>
+</html>

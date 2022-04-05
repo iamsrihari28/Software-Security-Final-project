@@ -1,0 +1,130 @@
+{
+    "intents": [{
+            "tag": "greetings",
+            "patterns": ["hi there", "hello","haroo","yaw","wassup", "hi", "hey", "holla", "hello"],
+            "responses": ["hello thanks for checking in", "hi there, how can i help you"],
+            "context": [""]
+        },
+        {
+            "tag": "goodbye",
+            "patterns": ["bye", "good bye", "see you later"],
+            "responses": ["have a nice time, welcome back again", "bye bye"],
+            "context": [""]
+        },
+        {
+            "tag": "thanks",
+            "patterns": ["Thanks", "okay","Thank you","thankyou", "That's helpful", "Awesome, thanks", "Thanks for helping me", "wow", "great"],
+            "responses": ["Happy to help!", "Any time!","you're welcome", "My pleasure"],
+            "context": [""]
+        },
+        {
+            "tag": "noanswer",
+            "patterns": [""],
+            "responses": ["Sorry, I didn't understand you", "Please give me more info", "Not sure I understand that"],
+            "context": [""]
+        },
+        {
+            "tag": "name1",
+            "patterns": ["what's your name?","who are you?"],
+            "responses": ["I'm just a chat bot. I only exist in the internet","I'm a hospital chat agent"],
+            "context": [""]
+        },
+        {
+            "tag": "name",
+            "patterns": ["my name is ", "I'm ","I am"],
+            "responses": ["Great to meet you {n}. How may I assist you {n}", "Oh, I'll keep that in mind {n}"],
+            "context": [""]
+        },
+        {
+            "tag": "fav",
+            "patterns": ["I need a favour", "can you help me"],
+            "responses": ["Well, go ahead and name it i see whether i can be able to help"],
+            "context": [""]
+        },
+        {
+            "tag": "need",
+            "patterns": ["I need you", "All I need is you","I want you"],
+            "responses": ["Yes I'm here to assist you"],
+            "context": [""]
+        },
+        {
+            "tag": "who",
+            "patterns": ["  Who are you?"],
+            "responses": [" I am just an artificial intelligence chat agent."],
+            "context": [""]
+        },
+        {
+            "tag": "events",
+            "patterns": ["what are the upcoming events","upcoming events"],
+            "responses": ["There are currently no upcoming events"],
+            "context": [""]
+        },
+        {
+            "tag": "lab",
+            "patterns": ["lab report", "report", "lab reports", "reports", "where can I find my lab reports?", "how do I find my lab reports?"],
+            "responses": ["http://securehospitalsystem-env.eba-mmby9hcm.us-west-1.elasticbeanstalk.com/patient/viewLabTests"],
+            "context": [""]
+        },
+
+        {
+            "tag": "update",
+            "patterns": ["update information", "personal information", "info", "update", "update details"],
+            "responses": ["http://securehospitalsystem-env.eba-mmby9hcm.us-west-1.elasticbeanstalk.com/patient/updateinfo"],
+            "context": [""]
+        },
+        {
+            "tag": "book",
+            "patterns": ["book","book an appointment", "schedule", "schedule an appointment", "book appointment"],
+            "responses": ["http://securehospitalsystem-env.eba-mmby9hcm.us-west-1.elasticbeanstalk.com/patient/bookappointment"],
+            "context": [""]
+        },
+        {
+            "tag": "schedule",
+            "patterns": ["schedule", "book an appointment", "schedule", "schedule an appointment", "book appointment"],
+            "responses": ["http://securehospitalsystem-env.eba-mmby9hcm.us-west-1.elasticbeanstalk.com/patient/bookappointment"],
+            "context": [""]
+        },
+        {
+            "tag": "diagnosis",
+            "patterns": ["diagnosis", "diagnosis report", "where can I find my diagnosis reports?"],
+            "responses": ["http://securehospitalsystem-env.eba-mmby9hcm.us-west-1.elasticbeanstalk.com/patient/viewAllDiagnosisReports"],
+            "context": [""]
+        },
+        {
+            "tag": "pay",
+            "patterns": ["make","make payment", "make payments"],
+            "responses": ["http://securehospitalsystem-env.eba-mmby9hcm.us-west-1.elasticbeanstalk.com/patient/viewPendingPayments"],
+            "context": [""]
+        },
+        {
+            "tag": "request",
+            "patterns": ["insurance request","raise", "insurance raise", "insurance raise request", "insurance request", "insurance query"],
+            "responses": ["http://securehospitalsystem-env.eba-mmby9hcm.us-west-1.elasticbeanstalk.com/patient/getInsuranceDetails"],
+            "context": [""]
+        },
+        {
+            "tag": "claim",
+            "patterns": ["claim", "claims", "insurance claim", "insurance claims", "view claims"],
+            "responses": ["http://securehospitalsystem-env.eba-mmby9hcm.us-west-1.elasticbeanstalk.com/patient/viewClaimHistory"],
+            "context": [""]
+        },
+        {
+            "tag": "appointment",
+            "patterns": ["view appointments", "see appointments", "appointments"],
+            "responses": ["http://securehospitalsystem-env.eba-mmby9hcm.us-west-1.elasticbeanstalk.com/patient/viewAppointmentHistory"],
+            "context": [""]
+        },
+        {
+            "tag": "payment",
+            "patterns": ["view payment", "view payments", "see transaction"],
+            "responses": ["http://securehospitalsystem-env.eba-mmby9hcm.us-west-1.elasticbeanstalk.com/patient/viewPaymentHistory"],
+            "context": [""]
+        },
+        {
+            "tag": "patient",
+            "patterns": ["home page", "patient portal"],
+            "responses": ["http://securehospitalsystem-env.eba-mmby9hcm.us-west-1.elasticbeanstalk.com/patient/home"],
+            "context": [""]
+        }
+    ]
+}

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+   <title>Secure Hospital System</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<style>
+
+ul.nav-tabs li.nav-item a.nav-link:active,.nav-item a.nav-link:hover {
+color:red;
+background-color:yellow;
+border: 1px solid brown;
+border-bottom: 4px solid brown;
+font-weight: 600;
+}
+</style>
+<body>
+<div class="container">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a th:href="@{/doctor/home}" class="navbar-brand" href="#">Secure Hospital System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+          
+           <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
+	        <ul style="list-style: none; display:contents">
+	         <li>
+		  		<a th:href="@{/doctor/updateinfo}"><i style ="color:white;font-size:2rem;" class="fa fa-user" title="profile"></i></a>
+		        </li>&nbsp&nbsp
+		        <li class="nav-item active" style="padding-right: 20px;">
+	        		<div style="display: flex; align-items:center">
+				      	<div style="height: 10px; width: 10px; border-radius:50%; background-color: var(--success)"></div>
+				      	<em style="color:white; font-size: 15px; margin-left: 10px">logged in as <span th:text="${accountName}"></span></em>
+				    </div>
+			     </li>
+		        <li>
+    				<form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="POST">
+		  				<button class="btn btn-outline-light" type="submit" title="Logout">Log Out</button>
+		         	</form>
+		        </li>
+	        </ul>
+    	</div>
+    </nav>
+    <br>
+    <br>
+    <br>
+     <div class="jumbotron" style="background-color: #deecf9">
+     <!--    <h3 style="text-align:center;">Welcome to the Admin Dashboard</h3>
+       <hr style="height:5px;border:none;color:#333;background-color:#333;" /> -->
+       <h1 th:inline="text">Hello <span th:text="${accountName}"></h1>
+        <hr>
+        <h3>Welcome to the Doctor Dashboard</h3>
+        <br>
+    </div>
+    <br>
+    <ul class="nav-tabs nav">
+			<li class="nav-item">
+				<a href="#general" id="generalAppointment" class="nav-link active" data-toggle="tab">General Appointments</a>
+			</li>
+			<li class="nav-item">
+				<a href="#special" id="specialAppointment" class="nav-link" data-toggle="tab">Special Appointment</a>
+			</li>
+	</ul>
+<div class="tab-content">
+<div class="tab-pane fade show active" id="general">
+<br>
+    <div class="card-deck">
+<div class="card text-center">
+  <div class="card-body">
+    <h5 class="card-title">Create Diagnosis</h5>
+    <hr>
+   <i class="fa fa-file-o" aria-hidden="true" style="font-size:8rem;"></i>
+   <br><br><br>
+    <a th:href="@{/doctor/viewpatients}" class="btn btn-dark">Create Diagnosis</a>
+  </div>
+</div>
+<div class="card text-center">
+  <div class="card-body">
+    <h5 class="card-title">Edit/Delete diagnosis</h5>
+    <hr>
+    <i class="fa fa-address-card-o"  aria-hidden="true" style="font-size:8rem;"></i>
+    <br><br><br>
+    <a th:href="@{/doctor/viewpatientsdiagnosis}" class="btn btn-dark">Edit/Delete diagnosis</a>
+  </div>
+</div>
+<div class="card text-center">
+  <div class="card-body">
+    <h5 class="card-title">View/Update Patient Records</h5>
+    <hr>
+    <i class="fa fa-address-card-o"  aria-hidden="true" style="font-size:8rem;"></i>
+    <br><br><br>
+    <a th:href="@{/doctor/viewpatientsrecords}" class="btn btn-dark">View/Update Patient Records</a>
+  </div>
+</div>
+<div class="card text-center">
+  <div class="card-body">
+    <h5 class="card-title">View Patient Lab Reports</h5>
+    <hr>
+    <i class="fa fa-history" aria-hidden="true" style="font-size:8rem;"></i>
+    <br><br><br>
+    <a th:href="@{/doctor/viewpatientsforreports}" class="btn btn-dark">View Patient Lab Reports</a>
+  </div>
+</div>
+</div>
+</div>
+<div class="tab-pane" id="special">
+<br>
+    <div class="card-deck">
+<div class="card text-center">
+  <div class="card-body">
+    <h5 class="card-title">Create Diagnosis for Special Appointment Patient</h5>
+    <hr>
+   <i class="fa fa-file-o" aria-hidden="true" style="font-size:8rem;"></i>
+   <br><br><br>
+    <a th:href="@{/doctor/viewSpecialApptPatients}" class="btn btn-dark">Create Diagnosis</a>
+  </div>
+</div>
+<div class="card text-center">
+  <div class="card-body">
+    <h5 class="card-title">Edit/Delete diagnosis  for Special Appointment Patient</h5>
+    <hr>
+    <i class="fa fa-address-card-o"  aria-hidden="true" style="font-size:8rem;"></i>
+    <br><br><br>
+    <a th:href="@{/doctor/viewSpApptPatientsdiagnosis}" class="btn btn-dark">Edit/Delete diagnosis</a>
+  </div>
+</div>
+<div class="card text-center">
+  <div class="card-body">
+    <h5 class="card-title">View/Update Patient Records for Special Appointment Patient</h5>
+    <hr>
+    <i class="fa fa-address-card-o"  aria-hidden="true" style="font-size:8rem;"></i>
+    <br><br><br>
+    <a th:href="@{/doctor/viewsplApptPatientsrecords}" class="btn btn-dark">View/Update Patient Records</a>
+  </div>
+</div>
+<div class="card text-center">
+  <div class="card-body">
+    <h5 class="card-title">View Patient Lab Reports  for Special Appointment Patient</h5>
+    <hr>
+    <i class="fa fa-history" aria-hidden="true" style="font-size:8rem;"></i>
+    <br><br><br>
+    <a th:href="@{/doctor/viewsplApptPatientsforreports}" class="btn btn-dark">View Patient Lab Reports</a>
+  </div>
+</div>
+</div>
+</div>
+</div>
+<br>
+<br>
+</div>
+</body>
+</html>
